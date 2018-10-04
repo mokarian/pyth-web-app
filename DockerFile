@@ -1,0 +1,14 @@
+FROM python:3.6
+ADD app.py /
+RUN apt-get update -y
+COPY . /app
+WORKDIR /app
+RUN pip install --upgrade tensorflow
+RUN  pip install keras
+RUN pip install -U scikit-learn scipy matplotlib
+RUN pip install -r requirements.txt
+RUN python3 -m pip install Pillow
+
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+
